@@ -1,0 +1,9 @@
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Client1\networkLibraryConsoleAppTest\obj\Debug\Client1.csprojResolveAssemblyReference.cache
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Client1\networkLibraryConsoleAppTest\bin\Debug\client1.exe.config
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Client1\networkLibraryConsoleAppTest\bin\Debug\client1.exe
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Client1\networkLibraryConsoleAppTest\bin\Debug\client1.pdb
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Client1\networkLibraryConsoleAppTest\obj\Debug\client1.exe
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Client1\networkLibraryConsoleAppTest\obj\Debug\client1.pdb
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Client1\Client1\bin\Debug\client1.exe.config
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Client1\Client1\obj\Debug\client1.exe
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Client1\Client1\obj\Debug\client1.pdb
