@@ -17,7 +17,7 @@ public class TransportTCP
     private Socket m_listener = null;
 
     // 클라이언트와의 접속용 소켓.
-    private Socket m_socket = null;
+    private Socket _clientSocket = null;
 
     // 송신 버퍼.
     private PacketQueue m_sendQueue;
@@ -53,17 +53,12 @@ public class TransportTCP
 
 
     // Use this for initialization
-    void Start()
+    public TransportTCP()
     {
 
         // 송수신 버퍼를 작성합니다.
         m_sendQueue = new PacketQueue();
         m_recvQueue = new PacketQueue();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     // 대기 시작.
@@ -130,15 +125,15 @@ public class TransportTCP
         bool ret = false;
         try
         {
-            m_socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-            m_socket.NoDelay = true;
-            m_socket.SendBufferSize = 0;
-            m_socket.Connect(address, port);
+            _clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            _clientSocket.NoDelay = true;
+            _clientSocket.SendBufferSize = 0;
+            _clientSocket.Connect(address, port);
             ret = LaunchThread();
         }
         catch
         {
-            m_socket = null;
+            _clientSocket = null;
         }
 
         if (ret == true)
@@ -170,12 +165,12 @@ public class TransportTCP
     {
         m_isConnected = false;
 
-        if (m_socket != null)
+        if (_clientSocket != null)
         {
             // 소켓 클로즈.
-            m_socket.Shutdown(SocketShutdown.Both);
-            m_socket.Close();
-            m_socket = null;
+            _clientSocket.Shutdown(SocketShutdown.Both);
+            _clientSocket.Close();
+            _clientSocket = null;
         }
 
         // 끊기를 통지합니다.
@@ -252,7 +247,7 @@ public class TransportTCP
             AcceptClient();
 
             // 클라이언트와의 송수신을 처리합니다.
-            if (m_socket != null && m_isConnected == true)
+            if (_clientSocket != null && m_isConnected == true)
             {
 
                 // 송신처리.
@@ -274,7 +269,7 @@ public class TransportTCP
         if (m_listener != null && m_listener.Poll(0, SelectMode.SelectRead))
         {
             // 클라이언트에서 접속했습니다.
-            m_socket = m_listener.Accept();
+            _clientSocket = m_listener.Accept();
             m_isConnected = true;
             Console.Write("Connected from client.");
         }
@@ -286,14 +281,14 @@ public class TransportTCP
         try
         {
             // 송신처리.
-            if (m_socket.Poll(0, SelectMode.SelectWrite))
+            if (_clientSocket.Poll(0, SelectMode.SelectWrite))
             {
                 byte[] buffer = new byte[s_mtu];
 
                 int sendSize = m_sendQueue.Dequeue(ref buffer, buffer.Length);
                 while (sendSize > 0)
                 {
-                    m_socket.Send(buffer, sendSize, SocketFlags.None);
+                    _clientSocket.Send(buffer, sendSize, SocketFlags.None);
                     sendSize = m_sendQueue.Dequeue(ref buffer, buffer.Length);
                 }
             }
@@ -310,11 +305,11 @@ public class TransportTCP
         // 수신처리.
         try
         {
-            while (m_socket.Poll(0, SelectMode.SelectRead))
+            while (_clientSocket.Poll(0, SelectMode.SelectRead))
             {
                 byte[] buffer = new byte[s_mtu];
 
-                int recvSize = m_socket.Receive(buffer, buffer.Length, SocketFlags.None);
+                int recvSize = _clientSocket.Receive(buffer, buffer.Length, SocketFlags.None);
                 if (recvSize == 0)
                 {
                     // 끊기.
@@ -324,10 +319,11 @@ public class TransportTCP
                 else if (recvSize > 0)
                 {
                     m_recvQueue.Enqueue(buffer, recvSize);
+                    _clientSocket.Send(buffer, buffer.Length, SocketFlags.None);
                 }
             }
         }
-        catch
+        catch(Exception ex)
         {
             return;
         }

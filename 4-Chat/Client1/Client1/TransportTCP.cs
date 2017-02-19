@@ -17,7 +17,7 @@ public class TransportTCP
     private Socket m_listener = null;
 
     // 클라이언트와의 접속용 소켓.
-    private Socket m_socket = null;
+    public Socket m_socket = null;
 
     // 송신 버퍼.
     private PacketQueue m_sendQueue;
@@ -53,17 +53,12 @@ public class TransportTCP
 
 
     // Use this for initialization
-    void Start()
+    public TransportTCP()
     {
 
         // 송수신 버퍼를 작성합니다.
         m_sendQueue = new PacketQueue();
         m_recvQueue = new PacketQueue();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 
     // 대기 시작.
@@ -298,7 +293,7 @@ public class TransportTCP
                 }
             }
         }
-        catch
+        catch(Exception ex)
         {
             return;
         }
@@ -323,7 +318,7 @@ public class TransportTCP
                 }
                 else if (recvSize > 0)
                 {
-                    m_recvQueue.Enqueue(buffer, recvSize);
+                    m_recvQueue.Enqueue(buffer, recvSize);                    
                 }
             }
         }
