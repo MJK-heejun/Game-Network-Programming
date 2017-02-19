@@ -1,0 +1,6 @@
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Server\Server\bin\Debug\Server.exe.config
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Server\Server\bin\Debug\Server.exe
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Server\Server\bin\Debug\Server.pdb
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Server\Server\obj\Debug\Server.csprojResolveAssemblyReference.cache
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Server\Server\obj\Debug\Server.exe
+C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Server\Server\obj\Debug\Server.pdb
