@@ -1,2 +1,0 @@
-C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Server\networkLibraryConsoleAppTest\bin\Debug\Server.exe.config
-C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Server\Server\bin\Debug\Server.exe.config

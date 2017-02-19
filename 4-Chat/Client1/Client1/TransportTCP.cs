@@ -136,7 +136,7 @@ public class TransportTCP
             m_socket.Connect(address, port);
             ret = LaunchThread();
         }
-        catch
+        catch(Exception ex)
         {
             m_socket = null;
         }

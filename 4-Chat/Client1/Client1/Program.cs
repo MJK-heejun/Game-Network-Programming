@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,11 +12,11 @@ namespace client1
         static void Main(string[] args)
         {
 
-            TransportUDP udpLib = new TransportUDP();
+            TransportTCP tcpLib = new TransportTCP();
 
-            udpLib.StartServer(14674,2);
-
-
+            bool ret = tcpLib.Connect("127.0.0.1", 122);
+            Console.WriteLine(ret);
+            Console.ReadLine();
         }
     }
 }

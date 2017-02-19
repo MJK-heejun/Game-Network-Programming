@@ -1,1 +1,0 @@
-C:\Users\james\Documents\Visual Studio 2015\Projects\Game Network Programming\4-Chat\Client2\networkLibraryConsoleAppTest\bin\Debug\Client2.exe.config

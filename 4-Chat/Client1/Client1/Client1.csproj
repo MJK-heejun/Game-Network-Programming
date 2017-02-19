@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="PacketQueue.cs" />
     <Compile Include="NetworkDef.cs" />
+    <Compile Include="TransportTCP.cs" />
     <Compile Include="TransportUDP.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
