@@ -28,9 +28,12 @@ public class WebSocketTCP
     }
 
     private void acceptClient() {
-        while (true)
+
+        TcpClient clientSocket;
+
+        while ((true))
         {
-            TcpClient clientSocket = serverSocket.AcceptTcpClient();
+            clientSocket = serverSocket.AcceptTcpClient();
             NetworkStream stream = clientSocket.GetStream();
 
             while (!stream.DataAvailable) ;

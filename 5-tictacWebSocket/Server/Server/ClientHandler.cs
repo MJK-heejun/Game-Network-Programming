@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 
 
@@ -14,17 +15,18 @@ public class ClientHandler
         this.clientSocket = clientSocket;
         this.clNo = clNo;
         //start new thread for the client 'clineNo'
-        Thread ctThread = new Thread(doChat);
+        Thread ctThread = new Thread(receive);
         ctThread.Start();
     }
 
-    private void doChat()
+    private void receive()
     {
-        while ((true))
+        //while ((true))
+        while (clientSocket.Connected)
         {
             NetworkStream stream = clientSocket.GetStream();
 
-            while (!stream.DataAvailable) ;
+            while (!stream.DataAvailable) ; //loop until the stream data is available
 
             Byte[] bytes = new Byte[clientSocket.Available];
 
@@ -32,9 +34,17 @@ public class ClientHandler
 
             //translate bytes of request to string
             String data = Encoding.UTF8.GetString(bytes);
-            Console.WriteLine(getDecodedData(bytes, bytes.Length) + ": hello from client handler");
+
+            string msg = getDecodedData(bytes, bytes.Length);
+            if (msg.Equals("\u0003?"))
+                clientSocket.Close();
+            else
+                Console.WriteLine(msg);
         }
+
+        Console.WriteLine("The client is disconnected");
     }
+
 
     private string getDecodedData(byte[] buffer, int length)
     {

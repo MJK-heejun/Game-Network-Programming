@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+
+<script>
+
+var connection = new WebSocket('ws://127.0.0.1:80');
+
+connection.onopen = function () {
+	console.log("connected??");
+  connection.send('Ping'); // Send the message 'Ping' to the server
+};
+
+// Log errors
+connection.onerror = function (error) {
+  console.log('WebSocket Error ' + error);
+};
+
+// Log messages from the server
+connection.onmessage = function (e) {
+  console.log('Server: ' + e.data);
+};
+
+connection.onclose = function (e) {
+  console.log('Server: ' + e.data);
+  console.log('it is now CLOSED!!!');
+};
+
+function send(){
+	console.log("try sending");
+	connection.send("muhahah");
+}
+
+function send2(){
+	console.log("try sending2");
+	connection.send("GET GET GET");
+}
+
+function send3(){
+	console.log("try sending2");
+	connection.send("\u0003?");
+}
+</script>
+
+<div onclick="send()">send</div>
+<div onclick="send2()">send2</div>
+<div onclick="send3()">send3</div>
+</body>
+</html>
